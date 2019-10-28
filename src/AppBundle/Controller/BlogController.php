@@ -40,4 +40,18 @@ class BlogController extends Controller
         return $this->render('blog/show.html.twig', ['post' => $post]);
     }
 
+    /**
+     * @Route("/new", name="blog_new")
+    */
+    public function newAction(Request $request)
+    {
+        $form = $this->createFormBuilder(new Post())
+            ->add('title')
+            ->add('content')
+            ->getForm();
+
+        return $this->render('blog/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
